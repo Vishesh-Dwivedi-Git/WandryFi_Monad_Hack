@@ -117,7 +117,7 @@ app.post("/api/verify", async (req, res) => {
       destination.lat,
       destination.lon
     );
-    if (distance > 50) {
+    if (distance > 200) {
       return res
         .status(403)
         .json({ error: `You are ${Math.round(distance)} meters away.` });
