@@ -8,6 +8,21 @@ import {
   type ReactNode,
 } from "react";
 
+// wanderify-context.ts
+ export type Destination1 =  {
+  id: string;
+  name: string;
+  image: string;
+  rewardPool: number;
+  difficulty: "Easy" | "Medium" | "Hard"; // ✅ stricter typing
+  description: string; // ✅ required
+  coordinates: { lat: number; lng: number }; // ✅ lat/lng instead of x/y
+  participants?: number;
+  estimatedTime?: string;
+  tags?: string[];
+};
+
+
 interface Destination {
   id: string;
   name: string;

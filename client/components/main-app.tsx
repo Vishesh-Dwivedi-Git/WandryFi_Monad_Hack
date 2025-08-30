@@ -6,6 +6,7 @@ import ExplorePage from "@/components/explore-page";
 import LeaderboardPage from "@/components/leaderboard-page";
 import MyTravelPage from "@/components/my-travel-page";
 import NavigationView from "@/components/navigation-view";
+import { Destination1 } from "@/contexts/wanderify-context";
 
 export type PageType = "explore" | "leaderboard" | "my-travel";
 
@@ -13,9 +14,9 @@ export default function MainApp() {
   const [currentPage, setCurrentPage] = useState<PageType>("explore");
   const [showNavigationView, setShowNavigationView] = useState(false);
   const [activeDestination, setActiveDestination] =
-    useState<Destination | null>(null);
+    useState<Destination1 | null>(null);
 
-  const handleNavigationView = (show: boolean, destination?: Destination) => {
+  const handleNavigationView = (show: boolean, destination?: Destination1) => {
     if (show && destination) {
       setActiveDestination(destination);
     } else {
