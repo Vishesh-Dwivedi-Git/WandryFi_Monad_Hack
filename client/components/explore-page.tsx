@@ -130,6 +130,7 @@ export default function ExplorePage() {
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [loading, setLoading] = useState(true);
   const [mapReady, setMapReady] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const { address } = useAccount();
   const contract = useWanderifyContract();
@@ -305,6 +306,11 @@ export default function ExplorePage() {
     );
   }
 
+  // Update the TileLayer URL dynamically based on dark mode state
+  const tileLayerUrl = isDarkMode
+    ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+    : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+
   return (
     <div className="min-h-screen bg-[#000000] p-6">
       <div className="max-w-7xl mx-auto relative">
@@ -383,8 +389,23 @@ export default function ExplorePage() {
               zoom={5} 
               style={{ height: "100%", width: "100%", zIndex: 1 }}
             >
+              {/* Add a theme toggle button inside the map */}
+              <div className="absolute top-4 right-4 z-[1000] bg-[#000000] p-2 rounded-lg shadow-md">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsDarkMode(!isDarkMode)}
+                  className={
+                    isDarkMode
+                      ? "bg-[#00D4FF] text-black hover:bg-[#00B7E6] font-pixel"
+                      : "text-[#FFFFFF] hover:text-[#00D4FF] hover:bg-[#000000] font-pixel"
+                  }
+                >
+                  {isDarkMode ? "Dark" : "Light"}
+                </Button>
+              </div>
               <MapStyle />
-              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+              <TileLayer url={tileLayerUrl} />
               {filteredDestinations.map((destination) => {
                 const icon = createCustomIcon(
                   destination.difficulty,
