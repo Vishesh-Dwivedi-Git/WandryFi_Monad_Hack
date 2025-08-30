@@ -1,4 +1,4 @@
-# Wanderify - Travel to Earn
+# Wanderify - Travel to Earn [(Deployed link)](https://wandry-fi-monad-hack.vercel.app/)
 
 Wanderify is a decentralized application (dApp) that gamifies travel by allowing users to stake tokens and earn rewards upon successful journey completion. The project integrates blockchain technology, smart contracts, and a modern web stack to deliver a seamless and engaging user experience.
 
