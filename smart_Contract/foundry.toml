@@ -7,9 +7,12 @@ metadata_hash = "none"  # disable ipfs
 use_literal_content = true # use source code
 optimizer = true
 optimizer_runs = 10000
-chain_id = 31337
+# # Monad Configuration
+# eth-rpc-url="https://testnet-rpc.monad.xyz"
+# chain_id = 10143
+chain_id = 10143  # Monad Testnet chain ID
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
 
-# Corrected remapping - add "contracts/" at the end
 remappings = [
-  "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/"
+  "@openzeppelin/=lib/openzeppelin-contracts/"
 ]
