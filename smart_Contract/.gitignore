@@ -1,0 +1,28 @@
+# Foundry build artifacts
+out/
+cache/
+
+# Node modules (if using npm/yarn for scripts)
+node_modules/
+
+# Environment files
+.env
+.env.*
+
+# VSCode settings
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Coverage reports
+coverage/
+
+# Solidity remappings
+remappings.txt.env
+out/
+cache/
