@@ -96,12 +96,12 @@ app.post("/api/verify", async (req, res) => {
         const ipInfo = await axios.get(
           `http://ip-api.com/json/${userIp}?fields=status,countryCode,proxy,hosting`
         );
-        if (ipInfo.data.countryCode !== destination.country) {
-          return res.status(403).json({ error: "IP-GPS location mismatch." });
-        }
-        if (ipInfo.data.proxy || ipInfo.data.hosting) {
-          return res.status(403).json({ error: "VPN or Proxy detected." });
-        }
+        // if (ipInfo.data.countryCode !== destination.country) {
+        //   return res.status(403).json({ error: "IP-GPS location mismatch." });
+        // }
+        // if (ipInfo.data.proxy || ipInfo.data.hosting) {
+        //   return res.status(403).json({ error: "VPN or Proxy detected." });
+        // }
       } catch (ipError) {
         console.error("IP lookup service failed:", ipError.message);
         return res
@@ -117,7 +117,7 @@ app.post("/api/verify", async (req, res) => {
       destination.lat,
       destination.lon
     );
-    if (distance > 200) {
+    if (distance > 50) {
       return res
         .status(403)
         .json({ error: `You are ${Math.round(distance)} meters away.` });
