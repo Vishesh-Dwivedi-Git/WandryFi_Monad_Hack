@@ -2,7 +2,7 @@ import { useAccount, useReadContract } from "wagmi";
 import { Address } from "viem";
 import WanderifyABI from "@/contracts/Wanderify.json";
 import { getContractAddress, getChainConfig } from "./chain-config";
-
+ 
 // Legacy export for backward compatibility - now reads from env
 export const contractAddr =
   process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ||
