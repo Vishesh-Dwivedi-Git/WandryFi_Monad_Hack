@@ -432,10 +432,10 @@ export default function NavigationView({ destination, onClose }: NavigationViewP
     }
 
     setCheckingIn(true);
-
+    const backendUrl = process.env.NEXT_BACKEND_URL || "https://wandryfi-monad-hack.onrender.com/api/verify/";
     try {
       // Call backend verification service
-      const response = await fetch("http://localhost:3001/api/verify", {
+      const response = await fetch( backendUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

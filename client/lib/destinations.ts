@@ -85,7 +85,7 @@ export const destinationsById: Record<
     id: "7",
     name: "IIIT Dharwad",
     image: IIIT,
-    coordinates: { lat: 15.3941, lng: 75.0244 },
+    coordinates:{ lat: 15.3926, lng: 75.0245 }, // IIIT Dharwad Campus
     difficulty: "Easy",
     description: "Visit the prestigious technology institute campus",
     estimatedTime: "1 day",
