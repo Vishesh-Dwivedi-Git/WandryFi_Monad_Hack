@@ -92,7 +92,7 @@ export default function LeaderboardPage() {
         {player.address}
       </div>
       <div className="font-pixel text-neon-cyan">
-        {player.score.toLocaleString()} WNDR
+        {player.score.toLocaleString()} TMod
       </div>
       <div className="text-2xl">{player.badge}</div>
     </div>

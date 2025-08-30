@@ -584,7 +584,7 @@ const MyTravelPage = ({ onNavigationView }: MyTravelPageProps) => {
                       {/* Image */}
                       <div className="relative overflow-hidden rounded-t-lg">
                         <img
-                          src={quest.image || "/placeholder.svg"}
+                          src={typeof quest.image === "string" ? quest.image : quest.image?.src || "/placeholder.svg"}
                           alt={quest.destinationName}
                           className="w-full h-32 object-cover"
                         />
@@ -604,7 +604,7 @@ const MyTravelPage = ({ onNavigationView }: MyTravelPageProps) => {
                               Staked:
                             </span>
                             <span className="font-pixel text-neon-gold">
-                              {quest.stakeAmount} WNDR
+                              {quest.stakeAmount} TMod
                             </span>
                           </div>
 
@@ -648,7 +648,7 @@ const MyTravelPage = ({ onNavigationView }: MyTravelPageProps) => {
                               onNavigationView(true, {
                                 id: quest.id,
                                 name: quest.destinationName,
-                                image: quest.image,
+                                image: typeof quest.image === "string" ? quest.image : quest.image?.src || "/placeholder.svg",
                                 rewardPool: 0, // We'll get this from contract
                                 difficulty:
                                   destinationData?.difficulty || "Medium",

@@ -511,7 +511,7 @@ export default function ExplorePage() {
                     </div>
                     <div className="flex items-center space-x-1 text-[#FFFFFF]">
                       <Clock className="w-4 h-4" />
-                      <span className="font-pixel">{destination.estimatedTime}</span>
+                      <span className="font-pixel text-sm">{destination.estimatedTime}</span>
                     </div>
                   </div>
 
