@@ -29,6 +29,6 @@ contract DeployWandryFi is Script {
         console.log("Base Reward:", wandryFi.BASE_REWARD(), "wei (0.002 TMON)");
         console.log("==========================================");
 
-        vm.stopBroadcast();
+;        vm.stopBroadcast();
     }
 }

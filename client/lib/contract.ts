@@ -11,6 +11,7 @@ export const contractAddr =
 // Dynamic contract configuration based on current chain
 export function getWanderifyContract(chainId?: number) {
   const contractAddress = getContractAddress(chainId);
+  console.log("Using contract address:", contractAddress);
   return {
     abi: WanderifyABI.abi,
     address: contractAddress,
@@ -20,6 +21,7 @@ export function getWanderifyContract(chainId?: number) {
 // Hook to get contract config for current chain
 export function useWanderifyContract() {
   const { chainId } = useAccount();
+  console.log("Current chain ID:", chainId);
   return getWanderifyContract(chainId);
 }
 
@@ -28,6 +30,7 @@ export const WanderifyContract = getWanderifyContract();
 
 export function useWanderifyBalance() {
   const { address } = useAccount();
+  console.log("User address:", address);
   const contract = useWanderifyContract();
 
   return useReadContract({
