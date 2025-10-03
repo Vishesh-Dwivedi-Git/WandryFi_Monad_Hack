@@ -650,7 +650,7 @@ export default function NavigationView({
     setCheckingIn(true);
     const backendUrl =
       process.env.NEXT_PUBLIC_BACKEND_URL ||
-      "https://wandryfi-monad-hack.onrender.com/api/verify/";
+      "https://wandryfi-monad-hack-97sw.onrender.com/api/verify/";
 
     try {
       const response = await fetch(backendUrl, {
