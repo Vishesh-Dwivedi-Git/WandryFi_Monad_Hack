@@ -140,7 +140,7 @@ const createUserIcon = (heading?: number): L.DivIcon | null => {
   });
 };
 
-// Create destination marker icon - UPDATED for 100m check-in
+// Create destination marker icon - UPDATED for 200m check-in
 const createDestinationIcon = (distance: number): L.DivIcon | null => {
   if (typeof window === "undefined" || !L) return null;
   
@@ -148,16 +148,16 @@ const createDestinationIcon = (distance: number): L.DivIcon | null => {
   let status = "FAR";
   let statusIcon = "🔴";
   
-  // UPDATED: Check-in available at 100m instead of 50m
-  if (distance <= 100) {
+  // UPDATED: Check-in available at 200m instead of 100m
+  if (distance <= 200) {
     bgColor = "#16a34a"; // green
     status = "READY";
     statusIcon = "✅";
-  } else if (distance <= 200) {
+  } else if (distance <= 400) {
     bgColor = "#ea580c"; // orange
     status = "CLOSE";
     statusIcon = "🟡";
-  } else if (distance <= 500) {
+  } else if (distance <= 800) {
     bgColor = "#2563eb"; // blue
     status = "NEAR";
     statusIcon = "🔵";
@@ -344,7 +344,7 @@ function DarkMapStyle(): null {
   return null;
 }
 
-// Map wrapper component - UPDATED for 100m check-in
+// Map wrapper component - UPDATED for 200m check-in
 function MapWrapper({
   userLocation,
   destination,
@@ -464,11 +464,11 @@ function MapWrapper({
           />
         )}
 
-        {/* UPDATED: Check-in zone (100m instead of 50m) */}
+        {/* UPDATED: Check-in zone (200m instead of 100m) */}
         {destination.coordinates && (
           <Circle
             center={[destination.coordinates.lat, destination.coordinates.lng]}
-            radius={100}
+            radius={200}
             pathOptions={{
               color: isInRange ? "#16a34a" : "#dc2626",
               fillColor: isInRange ? "#16a34a" : "#dc2626",
@@ -478,16 +478,30 @@ function MapWrapper({
           />
         )}
 
-        {/* UPDATED: Approach zone (200m instead of 100m) */}
+        {/* UPDATED: Approach zone (400m instead of 200m) */}
         {destination.coordinates && (
           <Circle
             center={[destination.coordinates.lat, destination.coordinates.lng]}
-            radius={200}
+            radius={400}
             pathOptions={{
               color: "#ea580c",
               fillColor: "transparent",
               weight: 2,
-              opacity: 0.8,
+              opacity: 0.6,
+            }}
+          />
+        )}
+
+        {/* UPDATED: Far approach zone (800m) */}
+        {destination.coordinates && (
+          <Circle
+            center={[destination.coordinates.lat, destination.coordinates.lng]}
+            radius={800}
+            pathOptions={{
+              color: "#2563eb",
+              fillColor: "transparent",
+              weight: 1,
+              opacity: 0.4,
             }}
           />
         )}
@@ -621,9 +635,9 @@ export default function NavigationView({
     );
   }, []);
 
-  // UPDATED: Handle check-in with 100m range
+  // UPDATED: Handle check-in with 200m range
   const handleCheckIn = async () => {
-    if (distanceToTarget > 100) return; // Changed from 50m to 100m
+    if (distanceToTarget > 200) return; // Changed from 100m to 200m
     if (!address) {
       setLocationError("Please connect your wallet");
       return;
@@ -683,10 +697,10 @@ export default function NavigationView({
     }
   };
 
-  // UPDATED: Range calculations for 100m check-in
-  const isInRange = distanceToTarget <= 100; // Changed from 50m to 100m
-  const isClose = distanceToTarget <= 200;   // Changed from 100m to 200m
-  const isNearby = distanceToTarget <= 500;
+  // UPDATED: Range calculations for 200m check-in
+  const isInRange = distanceToTarget <= 200; // Changed from 100m to 200m
+  const isClose = distanceToTarget <= 400;   // Changed from 200m to 400m
+  const isNearby = distanceToTarget <= 800;  // Changed from 500m to 800m
 
   if (!mounted) {
     return (
@@ -860,7 +874,7 @@ export default function NavigationView({
                     CHECK-IN RANGE:
                   </span>
                   <span className="text-green-400 font-bold">
-                    100m
+                    200m
                   </span>
                 </div>
                 {userLocation && (
